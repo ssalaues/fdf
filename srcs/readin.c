@@ -6,39 +6,27 @@
 /*   By: ssalaues <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 21:50:07 by ssalaues          #+#    #+#             */
-/*   Updated: 2017/03/05 13:12:30 by ssalaues         ###   ########.fr       */
+/*   Updated: 2017/03/05 15:23:40 by ssalaues         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "../libft/libft.h"
 
-/* OLD ATOI ARRAY
-t_fdf	ft_atoi_array(t_fdf fdf)
+int		countline(const char *s)
 {
-	int		**ary;
-	int		b;
+	int c;
 
-	b = 0;
-	fdf.x = 0;
-	ary = (int *)ft_memalloc(fdf.y);
-	while (*fdf.store)
+	c = 0;
+	while (*s)
 	{
-		if (ft_isdigit(**fdf.store) || **fdf.store == '-')
-		{
-			*ary = ft_atoi(*fdf.store);
-			if (b == 0)
-			{
-				fdf.ary = ary;
-				b = 1;
-			}
-			ary++;
-			fdf.x++;
-		}
-		fdf.store++;
+		s++;
+		if (*s == '\n' || !*s)
+			c++;
 	}
-	return (fdf);
-}*/
+	return (c);
+}
+
 int		ft_numct(const char *s)
 {
 	int	ct;
@@ -57,7 +45,7 @@ int		*ft_atoi_array(const char *s)
 	int	*ary;
 	int	i;
 	
-	ary = (int *)ft_memalloc(ft_numct(s) * sizeof(int));
+	ary = (int*)ft_memalloc((ft_numct(s) * sizeof(int)) + 1);
 	i = 1;
 	while(*s)
 	{
@@ -77,8 +65,8 @@ t_fdf	readin(int	fd)
 	char	*line;
 	t_fdf	fdf;
 
-	line = (char *)ft_memalloc(1);
-	fdf.ary = (int **)ft_memalloc(sizeof(int**));
+	line = (char*)ft_memalloc(1);
+	fdf.ary = (int **)ft_memalloc(256 * sizeof(int**));
 	fdf.y = 0;
 	while(get_next_line(fd, &line))
 	{

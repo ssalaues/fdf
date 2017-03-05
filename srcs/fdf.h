@@ -6,7 +6,7 @@
 /*   By: ssalaues <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 20:47:08 by ssalaues          #+#    #+#             */
-/*   Updated: 2017/03/05 11:09:01 by ssalaues         ###   ########.fr       */
+/*   Updated: 2017/03/05 15:27:47 by ssalaues         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdio.h>
+# include "../libft/libft.h"
+# include "../minilibx/mlx.h"
 
 typedef struct		s_fdf
 {
@@ -23,7 +25,8 @@ typedef struct		s_fdf
 	int				y;
 	int				x;
 	int				h;
-	char			**store;
+	void			*mlx;
+	void			*win;
 }					t_fdf;
 
 t_fdf				readin(int fd);
