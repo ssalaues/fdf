@@ -6,7 +6,7 @@
 #    By: ssalaues <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/05 15:05:07 by ssalaues          #+#    #+#              #
-#    Updated: 2017/03/05 15:44:17 by ssalaues         ###   ########.fr        #
+#    Updated: 2017/03/05 17:42:50 by ssalaues         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME = fdf
 
 SRCS = \
 		main.c		\
-		readin.c
+		readin.c	\
+		graphics.c
 
 all: $(NAME)
 

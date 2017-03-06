@@ -1,30 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   graphics.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ssalaues <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/01 20:52:13 by ssalaues          #+#    #+#             */
-/*   Updated: 2017/03/05 17:45:49 by ssalaues         ###   ########.fr       */
+/*   Created: 2017/03/05 16:31:32 by ssalaues          #+#    #+#             */
+/*   Updated: 2017/03/05 18:08:26 by ssalaues         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	main(int ac, char **av)
+int		iso_x(t_fdf fdf)
 {
-	t_fdf	fdf;
+	return (fdf.x * (TILE_W / 2) - fdf.y * (TILE_W / 2));
+}
+int		iso_y(t_fdf fdf)
+{
+	return (fdf.x * (TILE_H / 2) + fdf.y * (TILE_H / 2));
+}
 
+int		g_iso(t_fdf fdf)
+{
+	int	i;
+	int *ary;
 
-	if (ac >= 2)
+	while (fdf.y > 0)
 	{
-		fdf = readin(open(av[1], O_RDONLY));
-		fdf.mlx = mlx_init();
-		fdf.win = mlx_new_window(fdf.mlx, ft_atoi(av[2]), ft_atoi(av[3]), av[4]);
-		printf("y:%d\nx:%d\n", fdf.y, fdf.x);
-		g_iso(fdf);
-		mlx_loop(fdf.mlx);
+		i = **fdf.ary;
+		ary = *fdf.ary;
+		ary++;
+		while(fdf.x > 0)
+		{
+			mlx_pixel_put(fdf.mlx, fdf.win, iso_x(fdf), iso_y(fdf), 0x007fffd4);
+			fdf.x--;
+			ary++;
+		}
+		fdf.y--;
+		fdf.ary++;
 	}
 	return (0);
 }
