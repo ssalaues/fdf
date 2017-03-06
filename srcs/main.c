@@ -6,7 +6,7 @@
 /*   By: ssalaues <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 20:52:13 by ssalaues          #+#    #+#             */
-/*   Updated: 2017/03/05 17:45:49 by ssalaues         ###   ########.fr       */
+/*   Updated: 2017/03/05 20:30:08 by ssalaues         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	main(int ac, char **av)
 		fdf.win = mlx_new_window(fdf.mlx, ft_atoi(av[2]), ft_atoi(av[3]), av[4]);
 		printf("y:%d\nx:%d\n", fdf.y, fdf.x);
 		g_iso(fdf);
+		printf("test");
 		mlx_loop(fdf.mlx);
 	}
 	return (0);

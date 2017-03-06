@@ -6,7 +6,7 @@
 #    By: ssalaues <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/05 15:05:07 by ssalaues          #+#    #+#              #
-#    Updated: 2017/03/05 17:42:50 by ssalaues         ###   ########.fr        #
+#    Updated: 2017/03/05 20:41:34 by ssalaues         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ all: $(NAME)
 
 $(NAME): lib mlx
 	@cd srcs && clang -Wall -Wextra -Werror -c $(SRCS) -g
-	cd srcs && clang $(SRCS:.c=.o) -L../minilibx -lmlx -framework OpenGL -framework Appkit -L../libft -lft -o $(NAME)
+	cd srcs && clang $(SRCS:.c=.o) -g -L../minilibx -lmlx -framework OpenGL -framework Appkit -L../libft -lft -o $(NAME)
 	mv srcs/fdf .
 
 lib:

@@ -6,39 +6,46 @@
 /*   By: ssalaues <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/05 16:31:32 by ssalaues          #+#    #+#             */
-/*   Updated: 2017/03/05 18:08:26 by ssalaues         ###   ########.fr       */
+/*   Updated: 2017/03/05 21:07:24 by ssalaues         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int		iso_x(t_fdf fdf)
+int		iso_x(int y, int x)
 {
-	return (fdf.x * (TILE_W / 2) - fdf.y * (TILE_W / 2));
+	return (x * (TILE_W / 2) - y * (TILE_W / 2));
 }
-int		iso_y(t_fdf fdf)
+int		iso_y(int x, int y, int h)
 {
-	return (fdf.x * (TILE_H / 2) + fdf.y * (TILE_H / 2));
+	return (x * (h / 2) + y * (h / 2));
 }
+
+//void	b_line(t_fdf fdf)
 
 int		g_iso(t_fdf fdf)
 {
 	int	i;
+	int	x;
+	int y;
 	int *ary;
 
-	while (fdf.y > 0)
+	y = 0;
+	i = fdf.x;
+	while (fdf.y > y)
 	{
-		i = **fdf.ary;
+		x = 0;
 		ary = *fdf.ary;
+		fdf.x = *ary;
 		ary++;
-		while(fdf.x > 0)
+		while(fdf.x > x)
 		{
-			mlx_pixel_put(fdf.mlx, fdf.win, iso_x(fdf), iso_y(fdf), 0x007fffd4);
-			fdf.x--;
+			mlx_pixel_put(fdf.mlx, fdf.win, 256 + iso_x(y, x), 32 + iso_y(x, y, *ary), 0x007fffd4);
 			ary++;
+			x++;
 		}
-		fdf.y--;
 		fdf.ary++;
+		y++;
 	}
 	return (0);
 }
