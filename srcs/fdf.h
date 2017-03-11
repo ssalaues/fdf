@@ -6,7 +6,7 @@
 /*   By: ssalaues <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 20:47:08 by ssalaues          #+#    #+#             */
-/*   Updated: 2017/03/10 18:46:18 by ssalaues         ###   ########.fr       */
+/*   Updated: 2017/03/10 19:30:47 by ssalaues         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define FDF_H
 # define TILE_W 4
 # define TILE_H 4
-# define X_OFF	1
-# define Y_OFF	1
+# define X_OFF	256
+# define Y_OFF	256
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
