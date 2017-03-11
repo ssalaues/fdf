@@ -6,14 +6,16 @@
 /*   By: ssalaues <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 20:47:08 by ssalaues          #+#    #+#             */
-/*   Updated: 2017/03/05 21:04:17 by ssalaues         ###   ########.fr       */
+/*   Updated: 2017/03/10 18:46:18 by ssalaues         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
-# define TILE_W 32
-# define TILE_H 32
+# define TILE_W 4
+# define TILE_H 4
+# define X_OFF	1
+# define Y_OFF	1
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
@@ -25,13 +27,21 @@ typedef struct		s_fdf
 {
 	int				**ary;
 	int				y;
+	int				y1;
 	int				y2;
 	int				x;
+	int				x1;
 	int				x2;
 	int				h;
 	void			*mlx;
 	void			*win;
 }					t_fdf;
+
+typedef struct		s_line
+{
+	int				ix;
+	int				iy;
+}					t_line;
 
 t_fdf				readin(int fd);
 int					*ft_atoi_array(const char *s);

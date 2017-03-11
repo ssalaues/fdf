@@ -6,7 +6,7 @@
 #    By: ssalaues <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/05 15:05:07 by ssalaues          #+#    #+#              #
-#    Updated: 2017/03/05 20:41:34 by ssalaues         ###   ########.fr        #
+#    Updated: 2017/03/07 11:28:22 by ssalaues         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,3 +38,5 @@ fclean: clean
 	@cd libft && make fclean
 	@cd minilibx && make clean
 	@/bin/rm -f $(NAME)
+
+re: fclean all
