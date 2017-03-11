@@ -6,7 +6,7 @@
 /*   By: ssalaues <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/05 16:31:32 by ssalaues          #+#    #+#             */
-/*   Updated: 2017/03/10 18:53:09 by ssalaues         ###   ########.fr       */
+/*   Updated: 2017/03/10 19:30:27 by ssalaues         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,18 +87,18 @@ void	b_line(t_fdf fdf, int x1, int y1, int x2, int y2)//Original Implementation 
 		y2 = x1;
 		y1 = tmp;
 	}
-	while (x <= x2)	\\Y2 should be value + TILE_W
+	while (x <= x2)	//Y2 should be value + TILE_W
 	{
 		if (fdf.h)
 		{
-//			mlx_pixel_put(fdf.mlx, fdf.win, x + X_OFF, y + Y_OFF, 0x007fffd4);
-			mlx_pixel_put(fdf.mlx, fdf.win, (l.ix = iso_x(y1, x1 + X_OFF)), (l.iy = iso_y(x1, y1 + Y_OFF, fdf.h)), 0x007fffd4);
+			mlx_pixel_put(fdf.mlx, fdf.win, x + X_OFF, y + Y_OFF, 0x007fffd4);
+//			mlx_pixel_put(fdf.mlx, fdf.win, (l.ix = iso_x(y1, x1 + X_OFF)), (l.iy = iso_y(x1, y1 + Y_OFF, fdf.h)), 0x007fffd4);
 			printf("turqoise x:%d y:%d  ",l.ix,l.iy);
 		}
 		else
 		{
-			mlx_pixel_put(fdf.mlx, fdf.win, (l.ix = iso_x(y1, x1 + X_OFF)), (l.iy = iso_y(x1, y1 + Y_OFF, fdf.h)), 0x0000f000);
-//			mlx_pixel_put(fdf.mlx, fdf.win, (l.ix = x1 + X_OFF), (l.iy = y1 + Y_OFF), 0x0000f000);
+//			mlx_pixel_put(fdf.mlx, fdf.win, (l.ix = iso_x(y1, x1)), (l.iy = iso_y(x1, y1, fdf.h)), 0x0000f000);
+			mlx_pixel_put(fdf.mlx, fdf.win, (l.ix = x1 + X_OFF), (l.iy = y1 + Y_OFF), 0x0000f000);
 			printf("green x:%d y:%d  ",l.ix,l.iy);
 		}
 		eps += dy;
@@ -131,12 +131,12 @@ int			g_iso(t_fdf fdf)
 		while(fdf.x > fdf.x1)
 		{
 			fdf.h = *ary;
-	//		mlx_pixel_put(fdf.mlx, fdf.win, (l.ix = iso_x(fdf.y1, fdf.x1)), (l.iy = iso_y(fdf.x1, fdf.y1, *ary)), 0x007fffd4);
+		//	mlx_pixel_put(fdf.mlx, fdf.win, (l.ix = iso_x(fdf.y1, fdf.x1)), (l.iy = iso_y(fdf.x1, fdf.y1, *ary)), 0x007fffd4);
 //			b_line(fdf, fdf.x1, fdf.y1, iso_x(fdf.y1 + 1, fdf.x1 + 1), iso_y(fdf.x1 + 1, fdf.y1 + 1, *(ary + 1)));
-			if (*ary == *(ary + 1))
-				b_line(fdf, fdf.x1 * TILE_H, fdf.y1 * TILE_W, (fdf.x1 + 1) * TILE_H, (fdf.y1) * TILE_W);
-			else
-				b_line(fdf, fdf.x1 * TILE_H, fdf.y1 * TILE_W, (fdf.x1 + 1) * TILE_H, (fdf.y1 + 1) * TILE_W);
+		//	if (*ary == *(ary + 1))
+		//		b_line(fdf, fdf.x1 * TILE_H, fdf.y1 * TILE_W, (fdf.x1) * TILE_H, (fdf.y1) * TILE_W);
+		//	else
+			b_line(fdf, iso_x(fdf.y1, fdf.x1 * TILE_H), iso_y(fdf.x, fdf.y1 * TILE_W, *ary), (fdf.x1 + TILE_W) * TILE_H, (fdf.y1 + TILE_H) * TILE_W);
 			printf("Tile:%d,%d Height:%d\n",fdf.x1,fdf.y1,*ary);
 			ary++;
 			fdf.x1++;
