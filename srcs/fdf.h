@@ -6,16 +6,16 @@
 /*   By: ssalaues <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 20:47:08 by ssalaues          #+#    #+#             */
-/*   Updated: 2017/03/10 19:30:47 by ssalaues         ###   ########.fr       */
+/*   Updated: 2017/03/11 21:22:03 by ssalaues         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
-# define TILE_W 4
-# define TILE_H 4
-# define X_OFF	256
-# define Y_OFF	256
+# define TILE_W 16
+# define TILE_H 16
+# define X_OFF	0
+# define Y_OFF	0
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
