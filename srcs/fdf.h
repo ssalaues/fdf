@@ -6,16 +6,19 @@
 /*   By: ssalaues <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 20:47:08 by ssalaues          #+#    #+#             */
-/*   Updated: 2017/03/11 21:22:03 by ssalaues         ###   ########.fr       */
+/*   Updated: 2017/03/15 16:12:21 by ssalaues         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
-# define TILE_W 16
-# define TILE_H 16
+# define T_W 64
+# define T_H 64
 # define X_OFF	0
 # define Y_OFF	0
+# define C_1 0xfffd4
+# define C_2 0xff34b3
+# define C_3 0xff9ca
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
@@ -26,12 +29,16 @@
 typedef struct		s_fdf
 {
 	int				**ary;
+	int				x;
 	int				y;
+	int				y0;
 	int				y1;
 	int				y2;
-	int				x;
+	int				x0;
 	int				x1;
 	int				x2;
+	int				i;
+	int				j;
 	int				h;
 	void			*mlx;
 	void			*win;
@@ -39,12 +46,20 @@ typedef struct		s_fdf
 
 typedef struct		s_line
 {
-	int				ix;
-	int				iy;
+	int				dx;
+	int				dy;
+	int				stp;
+	int				x;
+	int				y;
+	int				x1;
+	int				y1;
+	int				x2;
+	int				y2;
+	int				derr;
+	int				err;
 }					t_line;
 
 t_fdf				readin(int fd);
-int					*ft_atoi_array(const char *s);
 int					g_iso(t_fdf fdf);
 
 #endif

@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_atoi_array.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ssalaues <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/01 20:52:13 by ssalaues          #+#    #+#             */
-/*   Updated: 2017/03/14 21:01:14 by ssalaues         ###   ########.fr       */
+/*   Created: 2017/03/15 14:10:35 by ssalaues          #+#    #+#             */
+/*   Updated: 2017/03/15 14:49:52 by ssalaues         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+int		*ft_atoi_array(const char * s)
 {
-	t_fdf	fdf;
+	int	*ary;
+	int	i;
 
-
-	if (ac >= 2)
+	ary = (int*)ft_memalloc((ft_numct(s) * sizeof(int)) + 1);
+	i = 1;
+	while (*s)
 	{
-		fdf = readin(open(av[1], O_RDONLY));
-		fdf.mlx = mlx_init();
-		fdf.win = mlx_new_window(fdf.mlx, ft_atoi(av[2]), ft_atoi(av[3]), av[4]);
-		//printf("y:%d\nx:%d\n", fdf.y, fdf.x);
-		g_iso(fdf);
-		printf("test");
-		mlx_loop(fdf.mlx);
+		if (ft_isdigit(*s) || *s == '-')
+		{
+			ary[i] = ft_atoi(s);
+			i++;
+		}
+		s = ((ft_wordlen(s, ' ')) ? s + ft_wordlen(s, ' ') : s + 1);
 	}
-	return (0);
+	ary[0] = i;
+	return (ary);
 }

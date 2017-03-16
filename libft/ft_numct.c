@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_numct.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ssalaues <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/01 20:52:13 by ssalaues          #+#    #+#             */
-/*   Updated: 2017/03/14 21:01:14 by ssalaues         ###   ########.fr       */
+/*   Created: 2017/03/15 14:16:15 by ssalaues          #+#    #+#             */
+/*   Updated: 2017/03/15 14:51:27 by ssalaues         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+int	ft_numct(const char *s)
 {
-	t_fdf	fdf;
+	int	ct;
 
-
-	if (ac >= 2)
+	ct = 0;
+	while (*s)
 	{
-		fdf = readin(open(av[1], O_RDONLY));
-		fdf.mlx = mlx_init();
-		fdf.win = mlx_new_window(fdf.mlx, ft_atoi(av[2]), ft_atoi(av[3]), av[4]);
-		//printf("y:%d\nx:%d\n", fdf.y, fdf.x);
-		g_iso(fdf);
-		printf("test");
-		mlx_loop(fdf.mlx);
+		if (ft_isdigit(*s) && !ft_isdigit(*(s + 1)))
+			ct++;
+		s++;
 	}
-	return (0);
+	return (ct);
 }
