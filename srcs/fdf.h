@@ -6,16 +6,16 @@
 /*   By: ssalaues <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 20:47:08 by ssalaues          #+#    #+#             */
-/*   Updated: 2017/03/16 19:13:09 by ssalaues         ###   ########.fr       */
+/*   Updated: 2017/03/18 21:07:08 by ssalaues         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
-# define T_W 1
-# define T_H 1
-# define X_OFF	0
-# define Y_OFF	0
+# define T_W 32
+# define T_H 32
+# define X_OFF	128
+# define Y_OFF	512
 # define C_1 0xfffd4
 # define C_2 0xff34b3
 # define C_3 0xff9ca

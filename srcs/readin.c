@@ -6,7 +6,7 @@
 /*   By: ssalaues <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 21:50:07 by ssalaues          #+#    #+#             */
-/*   Updated: 2017/03/15 14:44:36 by ssalaues         ###   ########.fr       */
+/*   Updated: 2017/03/18 20:46:35 by ssalaues         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ t_fdf	readin(int	fd)
 		ft_strdel(&line);
 		fdf.y++;
 	}
-	fdf.x = **fdf.ary * T_W;
+	fdf.x = **fdf.ary;
 	fdf.y--;
-	fdf.y *= T_H;
 	return (fdf);
 }
