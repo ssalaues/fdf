@@ -6,14 +6,14 @@
 /*   By: ssalaues <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 20:47:08 by ssalaues          #+#    #+#             */
-/*   Updated: 2017/03/21 22:30:32 by ssalaues         ###   ########.fr       */
+/*   Updated: 2017/03/21 22:45:53 by ssalaues         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
-# define T_W 8
-# define T_H 8
+# define T_W	fdf.t_s
+# define T_H	fdf.t_s
 # define X_OFF	fdf.t_w
 # define Y_OFF	fdf.t_h
 # define C_1 0xfffd4
@@ -42,6 +42,7 @@ typedef struct		s_fdf
 	int				h;
 	int				t_w;
 	int				t_h;
+	int				t_s;
 	char			*file;
 	void			*mlx;
 	void			*win;
