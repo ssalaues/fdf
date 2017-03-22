@@ -5,106 +5,96 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ssalaues <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/05 16:31:32 by ssalaues          #+#    #+#             */
-/*   Updated: 2017/03/12 15:09:00 by ssalaues         ###   ########.fr       */
+/*   Created: 2017/03/12 15:09:37 by ssalaues          #+#    #+#             */
+/*   Updated: 2017/03/21 17:05:09 by ssalaues         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int		iso_x(int y, int x)
+t_line	l_init(t_fdf fdf)
 {
-//	return ((x * (TILE_W / 2) - y * (TILE_W / 2)));
-	return ((x - y) * TILE_W);
-}
-
-int		iso_y(int x, int y)
-{
-//	return ((x * (TILE_H / 2) + y * (TILE_H / 2)));
-	return ((x + y) * TILE_H);
-}
-
-void	swap(int *a, int *b)
-{
-	int	tmp;
-
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
-}
-
-void	b_line(t_fdf fdf, int x1, int y1, int x2, int y2)//Original Implementation of Bresenham's Line Algo
-{
-	int	dx;
-	int	dy;
-	int	y;
-	int	x;
-	int	eps;
-	int c1 = 0xfffd4;
-	int c2 = 0xff34b3;
-	int stp = 0;
-	int	der;
-
-	if (ft_abs(x1 - x2) < ft_abs(y1 - y2))
-		swap(&x1, &y1);
-		swap(&x2, &y2);
-		stp = 1;
-	if (x1 > x2)
-		swap(&x1, &x2);
-		swap(&y1, &y2);
-	dx = x2 - x1;
-	dy = y2 - y1;
-	der = ft_abs(dy) << 1;
-	eps = 0;
-	y = y1;
-	x = x1;
-	while (x <= x2)	//Y2 should be value + TILE_W
+	t_line	l;
+	
+	l.stp = 0;
+	if (ft_abs(fdf.x0 - fdf.x1) < ft_abs(fdf.y0 - fdf.y1))
 	{
-		if (stp)
+		ft_swap(&fdf.x0, &fdf.y0);
+		ft_swap(&fdf.x1, &fdf.y1);
+		l.stp = 1;
+	}
+	if (fdf.x0 > fdf.x1)
+	{
+		ft_swap(&fdf.x0, &fdf.x1);
+		ft_swap(&fdf.y0, &fdf.y1);
+	}
+	l.dx = fdf.x1 - fdf.x0;
+	l.dy = fdf.y1 - fdf.y0;
+	l.derr = ft_abs(l.dy) << 1;
+	l.err = 0;
+	l.y = fdf.y0;
+	l.x = fdf.x0;
+	return (l);
+}
+
+void	b_line(t_fdf fdf)
+{
+	t_line l;
+
+	l = l_init(fdf);
+	while (l.x <= fdf.x1)
+	{
+		if (l.stp)
+			mlx_pixel_put(fdf.mlx, fdf.win, l.y + X_OFF, l.x + Y_OFF, C_3);
+		else if (fdf.h)
+			mlx_pixel_put(fdf.mlx, fdf.win, l.x + X_OFF, l.y + Y_OFF, C_2);
+		else if (!fdf.h)
+			mlx_pixel_put(fdf.mlx, fdf.win, l.x + X_OFF, l.y + Y_OFF, C_1);
+		printf("x: %d y: %d\n", l.x, l.y);
+		l.err += l.derr;
+		if (l.err > l.dx)
 		{
-//			mlx_pixel_put(fdf.mlx, fdf.win, (iso_x(y, x)), (iso_y(x, y)), c2);
-			mlx_pixel_put(fdf.mlx, fdf.win, (y), (x), c2);
-			printf("fusia x:%d y:%d  ",x,y);
+			l.y += (fdf.y1 > fdf.y0 ? 1 : -1);
+			l.err -= l.dx << 1;
 		}
-		else
-		{
-//			mlx_pixel_put(fdf.mlx, fdf.win,(iso_y(x, y)), (iso_x(y, x)), c1);
-			mlx_pixel_put(fdf.mlx, fdf.win, (x), (y), c1);
-			printf("green x:%d y:%d  ",x,y);
-		}
-		eps += der;
-		if (eps > dx)
-		{
-			y += (y2 > y1 ? 1 : -1);
-			eps -= dx;
-		}
-		x++;
+		l.x++;
 	}
 }
 
-int			g_iso(t_fdf fdf)
+void	d_hori(t_fdf fdf)
 {
-	int 	*ary;
+	fdf.x0 = (fdf.i * T_W) + (fdf.j * T_W);
+	fdf.x1 = ((fdf.i + 1) * T_W) + (fdf.j * T_H);
+	fdf.y0 = ((fdf.j * T_H) >> 1) - (((fdf.i * T_W) + (10 * fdf.h)) >> 1);
+	fdf.y1 = ((fdf.j * T_H) >> 1) - ((((fdf.i + 1) * T_W) + (10 * fdf.ary[fdf.j][fdf.i + 1])) >> 1);
+	b_line(fdf);
+}
 
-	fdf.y1 = 0;
-	while (fdf.y >= fdf.y1)
+void	d_vert(t_fdf fdf)
+{
+	fdf.x0 = ((fdf.i * T_W) + (fdf.j * T_H));
+	fdf.x1 = (fdf.i * T_W) + ((fdf.j + 1) * T_H);
+	fdf.y0 = ((fdf.j * T_H) >> 1) - (((fdf.i * T_W) + (10 * fdf.h)) >> 1);
+	fdf.y1 = (((fdf.j + 1) * T_H) >> 1) - (((fdf.i * T_W) + (10 * fdf.ary[fdf.j + 1][fdf.i])) >> 1);
+	b_line(fdf);
+}
+
+int	graphics(t_fdf fdf)
+{
+	fdf.j = 0;
+	while (fdf.j < fdf.y)
 	{
-		fdf.x1 = 0;
-		ary = *fdf.ary;
-		fdf.x = *ary * TILE_W;
-		fdf.x--;
-		ary++;
-		while(fdf.x > fdf.x1)
+		fdf.i = 1;
+		while (fdf.i < fdf.x)
 		{
-			fdf.h = *ary;
-			b_line(fdf, fdf.x1, fdf.y1, (fdf.x1 * TILE_W), (fdf.y1 * TILE_H));
-		//	printf("Tile:%d,%d Height:%d\n",fdf.x1,fdf.y1,*ary);
-			ary++;
-			fdf.x1 += TILE_W;
+			fdf.h = fdf.ary[fdf.j][fdf.i];
+			if (fdf.i < fdf.x - 1)
+				d_hori(fdf);
+			if (fdf.j < fdf.y - 1)
+				d_vert(fdf);
+			fdf.i++;
 		}
-		fdf.ary++;
-		fdf.y1 += TILE_H;
+		fdf.j++;
 	}
-	printf("done with function\n");
 	return (0);
 }

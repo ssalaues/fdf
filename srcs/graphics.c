@@ -6,11 +6,32 @@
 /*   By: ssalaues <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/12 15:09:37 by ssalaues          #+#    #+#             */
-/*   Updated: 2017/03/20 18:28:29 by ssalaues         ###   ########.fr       */
+/*   Updated: 2017/03/21 21:51:14 by ssalaues         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+void	b_draw(t_fdf fdf, t_line l)
+{
+	while (l.x <= fdf.x1)
+	{
+		if (l.stp)
+			mlx_pixel_put(fdf.mlx, fdf.win, l.y + X_OFF, l.x + Y_OFF, C_3);
+		else if (fdf.h)
+			mlx_pixel_put(fdf.mlx, fdf.win, l.x + X_OFF, l.y + Y_OFF, C_2);
+		else if (!fdf.h)
+			mlx_pixel_put(fdf.mlx, fdf.win, l.x + X_OFF, l.y + Y_OFF, C_1);
+		printf("x: %d y: %d\n", l.x, l.y);
+		l.err += l.derr;
+		if (l.err > l.dx)
+		{
+			l.y += (fdf.y1 > fdf.y0 ? 1 : -1);
+			l.err -= l.dx << 1;
+		}
+		l.x++;
+	}
+}
 
 void	b_line(t_fdf fdf)
 {
@@ -34,23 +55,7 @@ void	b_line(t_fdf fdf)
 	l.err = 0;
 	l.y = fdf.y0;
 	l.x = fdf.x0;
-	while (l.x <= fdf.x1)
-	{
-		if (l.stp)
-			mlx_pixel_put(fdf.mlx, fdf.win, l.y + X_OFF, l.x + Y_OFF, C_3);
-		else if (fdf.h)
-			mlx_pixel_put(fdf.mlx, fdf.win, l.x + X_OFF, l.y + Y_OFF, C_2);
-		else if (!fdf.h)
-			mlx_pixel_put(fdf.mlx, fdf.win, l.x + X_OFF, l.y + Y_OFF, C_1);
-		printf("x: %d y: %d\n", l.x, l.y);
-		l.err += l.derr;
-		if (l.err > l.dx)
-		{
-			l.y += (fdf.y1 > fdf.y0 ? 1 : -1);
-			l.err -= l.dx << 1;
-		}
-		l.x++;
-	}
+	b_draw(fdf, l);
 }
 
 void	d_hori(t_fdf fdf)
@@ -70,36 +75,8 @@ void	d_vert(t_fdf fdf)
 	fdf.y1 = (((fdf.j + 1) * T_H) >> 1) - (((fdf.i * T_W) + (10 * fdf.ary[fdf.j + 1][fdf.i])) >> 1);
 	b_line(fdf);
 }
-/*
-int	g_iso(t_fdf fdf)
-{
-	fdf.j = 0;
-	while (fdf.j < fdf.y)
-	{
-		fdf.i = 1;
-		while (fdf.i < fdf.x - 1)
-		{
-			fdf.h = fdf.ary[fdf.j][fdf.i];
-			d_hori(fdf);
-			fdf.i++;
-		}
-		fdf.j++;
-	}
-	fdf.j = 0;
-	while (fdf.j < fdf.y - 1)
-	{
-		fdf.i = 1;
-		while (fdf.i < fdf.x)
-		{
-			fdf.h = fdf.ary[fdf.j][fdf.i];
-			d_vert(fdf);
-			fdf.i++;
-		}
-		fdf.j++;
-	}
-	return (0);
-}*/
-int	g_iso(t_fdf fdf)
+
+int	graphics(t_fdf fdf)
 {
 	fdf.j = 0;
 	while (fdf.j < fdf.y)
