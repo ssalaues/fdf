@@ -6,7 +6,7 @@
 /*   By: ssalaues <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 20:47:08 by ssalaues          #+#    #+#             */
-/*   Updated: 2017/03/21 21:22:35 by ssalaues         ###   ########.fr       */
+/*   Updated: 2017/03/21 22:30:32 by ssalaues         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,6 @@ typedef struct		s_line
 }					t_line;
 
 t_fdf				readin(int fd);
-int					graphics(t_fdf fdf);
+int					graphics(t_fdf *fdf);
 
 #endif

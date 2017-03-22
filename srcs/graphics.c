@@ -6,7 +6,7 @@
 /*   By: ssalaues <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/12 15:09:37 by ssalaues          #+#    #+#             */
-/*   Updated: 2017/03/21 21:51:14 by ssalaues         ###   ########.fr       */
+/*   Updated: 2017/03/21 22:30:47 by ssalaues         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,22 +76,22 @@ void	d_vert(t_fdf fdf)
 	b_line(fdf);
 }
 
-int	graphics(t_fdf fdf)
+int	graphics(t_fdf *fdf)
 {
-	fdf.j = 0;
-	while (fdf.j < fdf.y)
+	fdf->j = 0;
+	while (fdf->j < fdf->y)
 	{
-		fdf.i = 1;
-		while (fdf.i < fdf.x)
+		fdf->i = 1;
+		while (fdf->i < fdf->x)
 		{
-			fdf.h = fdf.ary[fdf.j][fdf.i];
-			if (fdf.i < fdf.x - 1)
-				d_hori(fdf);
-			if (fdf.j < fdf.y - 1)
-				d_vert(fdf);
-			fdf.i++;
+			fdf->h = fdf->ary[fdf->j][fdf->i];
+			if (fdf->i < fdf->x - 1)
+				d_hori(*fdf);
+			if (fdf->j < fdf->y - 1)
+				d_vert(*fdf);
+			fdf->i++;
 		}
-		fdf.j++;
+		fdf->j++;
 	}
 	return (0);
 }
