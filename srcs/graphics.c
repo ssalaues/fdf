@@ -6,7 +6,7 @@
 /*   By: ssalaues <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/12 15:09:37 by ssalaues          #+#    #+#             */
-/*   Updated: 2017/03/21 22:30:47 by ssalaues         ###   ########.fr       */
+/*   Updated: 2017/03/23 13:35:12 by ssalaues         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ void	b_line(t_fdf fdf)
 	l.err = 0;
 	l.y = fdf.y0;
 	l.x = fdf.x0;
-	b_draw(fdf, l);
+	if(l.x < 2000 || l.y < 1000)
+		b_draw(fdf, l);
 }
 
 void	d_hori(t_fdf fdf)
@@ -78,6 +79,8 @@ void	d_vert(t_fdf fdf)
 
 int	graphics(t_fdf *fdf)
 {
+	mlx_string_put(fdf->mlx, fdf->win, 115, 30, C_1, fdf->file);
+	mlx_string_put(fdf->mlx, fdf->win, 15, 30, C_2, "Wireframe:");
 	fdf->j = 0;
 	while (fdf->j < fdf->y)
 	{

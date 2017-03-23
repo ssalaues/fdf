@@ -6,7 +6,7 @@
 /*   By: ssalaues <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 20:52:13 by ssalaues          #+#    #+#             */
-/*   Updated: 2017/03/21 22:48:44 by ssalaues         ###   ########.fr       */
+/*   Updated: 2017/03/23 13:51:29 by ssalaues         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,18 @@ int		key_h(int keycode, t_fdf *fdf)
 	if (keycode == KEY_DOWN)
 		fdf->t_h += 10;
 	if (keycode == KEY_Z)
+	{
 		fdf->t_s += 4;
+		fdf->t_w -= fdf->t_s * 1.4;
+		fdf->t_h += 8;
+	}
 	if (keycode == KEY_O)
+	{
 		fdf->t_s -= 4;
+		fdf->t_w += fdf->t_s * 1.4;
+		fdf->t_h -= 8;
+	}
 	mlx_clear_window(fdf->mlx, fdf->win);
-	mlx_string_put(fdf->mlx, fdf->win, 75, 30, C_1, fdf->file);
-	mlx_string_put(fdf->mlx, fdf->win, 25, 30, C_2, "test:");
 	graphics(fdf);
 	return (0);
 }
@@ -66,11 +72,8 @@ int	main(int ac, char **av)
 		fdf.t_w = 1000 - (sqrt(pow(fdf.x, 2) + pow(fdf.y, 2)) * 2.);
 		fdf.t_h = 500 + (fdf.y >> 1);
 		fdf.t_s = 8;
-		mlx_string_put(fdf.mlx, fdf.win, 75, 30, C_1, fdf.file);
-		mlx_string_put(fdf.mlx, fdf.win, 25, 30, C_2, "File:");
 		mlx_expose_hook(fdf.win, &graphics, &fdf);
 		mlx_key_hook(fdf.win, &key_h, &fdf);
-	//	graphics(fdf);
 		mlx_loop(fdf.mlx);
 	}
 	else
