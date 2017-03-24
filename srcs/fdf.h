@@ -6,7 +6,7 @@
 /*   By: ssalaues <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 20:47:08 by ssalaues          #+#    #+#             */
-/*   Updated: 2017/03/21 22:45:53 by ssalaues         ###   ########.fr       */
+/*   Updated: 2017/03/23 16:34:43 by ssalaues         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # define C_1 0xfffd4
 # define C_2 0xff34b3
 # define C_3 0xcc9ca
+# define C_4 0xff3030
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>

@@ -5,13 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ssalaues <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/20 20:34:22 by ssalaues          #+#    #+#             */
-/*   Updated: 2017/03/21 15:58:06 by ssalaues         ###   ########.fr       */
+/*   Created: 2017/03/23 17:14:48 by ssalaues          #+#    #+#             */
+/*   Updated: 2017/03/23 17:20:41 by ssalaues         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MLX_KEYS_MACOS_H
-# define MLX_KEYS_MACOS_H
+#ifndef MLX_KEYS_MAC_H
+# define MLX_KEYS_MAC_H
 
 # define KEY_ESCAPE			53
 # define KEY_F1 			122
