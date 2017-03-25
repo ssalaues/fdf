@@ -6,7 +6,7 @@
 /*   By: ssalaues <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/12 15:09:37 by ssalaues          #+#    #+#             */
-/*   Updated: 2017/03/23 17:22:07 by ssalaues         ###   ########.fr       */
+/*   Updated: 2017/03/24 17:36:20 by ssalaues         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	b_draw(t_fdf fdf, t_line l)
 {
-	while (l.x <= fdf.x1 && l.x < 2000 && (l.y < 500 || l.y > -500))
+	while (l.x <= fdf.x1)
 	{
 		if (l.stp)
 			mlx_pixel_put(fdf.mlx, fdf.win, l.y + X_OFF, l.x + Y_OFF, C_3);
@@ -72,7 +72,7 @@ void	calc_xy(t_fdf fdf)
 	{
 		fdf.x1 = (fdf.i * T_W) + ((fdf.j + 1) * T_H);
 		fdf.y1 = (((fdf.j + 1) * T_H) >> 1) - (((fdf.i * T_W)
-		+ (T_W * fdf.ary[fdf.j + 1][fdf.i])) >> 1);
+		+ (T_H * fdf.ary[fdf.j + 1][fdf.i])) >> 1);
 		b_line(fdf);
 	}
 }
@@ -84,9 +84,9 @@ int		graphics(t_fdf *fdf)
 	mlx_string_put(fdf->mlx, fdf->win, 15, 30, C_2, "Wireframe:");
 	mlx_string_put(fdf->mlx, fdf->win, 35, 45, C_3, "Zoom in: Z key");
 	if (fdf->t_s == 36)
-		mlx_string_put(fdf->mlx, fdf->win, 1000, 45, C_4, "MAX SIZE REACHED");
+		mlx_string_put(fdf->mlx, fdf->win, 915, 45, C_4, "MAX SIZE REACHED");
 	if (fdf->t_s == 4)
-		mlx_string_put(fdf->mlx, fdf->win, 1000, 45, C_4, "MIN SIZE REACHED");
+		mlx_string_put(fdf->mlx, fdf->win, 915, 45, C_4, "MIN SIZE REACHED");
 	mlx_string_put(fdf->mlx, fdf->win, 25, 60, C_3, "Zoom out: O key");
 	mlx_string_put(fdf->mlx, fdf->win, 65, 75, C_3, "Move: Arrow Keys");
 	mlx_string_put(fdf->mlx, fdf->win, 65, 90, C_3, "Quit: ESC");

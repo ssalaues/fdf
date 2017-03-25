@@ -6,7 +6,7 @@
 /*   By: ssalaues <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 20:52:13 by ssalaues          #+#    #+#             */
-/*   Updated: 2017/03/23 17:17:10 by ssalaues         ###   ########.fr       */
+/*   Updated: 2017/03/23 17:39:03 by ssalaues         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,6 @@ int		main(int ac, char **av)
 		mlx_loop(fdf.mlx);
 	}
 	else
-		ft_putstr("\tDude, Don't forget arguments\n");
+		ft_putstr("Dude, Usage: ./fdf map_file\n");
 	return (0);
 }
