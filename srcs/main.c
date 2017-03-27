@@ -71,10 +71,13 @@ t_fdf	readin(int fd)
 int		main(int ac, char **av)
 {
 	t_fdf	fdf;
+	int	fd;
 
 	if (ac >= 2)
 	{
-		fdf = readin(open(av[1], O_RDONLY));
+		if ((fd = open(av[1], O_RDONLY)) < 0 || !ft_strstr(av[1], ".fdf"))
+			return (0);
+		fdf = readin(fd);
 		fdf.file = 1 + ft_strrchr(av[1], '/');
 		fdf.mlx = mlx_init();
 		fdf.win = mlx_new_window(fdf.mlx, 2000, 1000, "fdf");
